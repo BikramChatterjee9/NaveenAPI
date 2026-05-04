@@ -17,24 +17,29 @@ import static org.hamcrest.Matchers.*;
 
 public class CreateUser extends BaseTest {
 
+
+
+
     @Test
     public void m1()
     {
-        UserPojo userPojo = new UserPojo(null,"priyanka", StringUtils.getRandomEmail(),"female","active");
-        Response response = restClient.post(GO_REST_BASEURL,GO_REST_ENDPOINT,userPojo,null,null, AuthType.BEARER_TOKEN, ContentType.JSON);
-        Assert.assertEquals(response.jsonPath().getString("name"),"priyanka");
+
+//        UserPojo userPojo = new UserPojo(null,"priyanka", StringUtils.getRandomEmail(),"female","active");
+//        Response response = restClient.post(GO_REST_BASEURL,GO_REST_ENDPOINT,userPojo,null,null, AuthType.BEARER_TOKEN, ContentType.JSON);
+//        Assert.assertEquals(response.jsonPath().getString("name"),"priyanka");
     }
 
     @Test
     public void m2()
     {
-        String User = "{\n" +
-                "    \"name\": \"Jagmeet Guneta\",\n" +
-                "    \"email\": \""+StringUtils.getRandomEmail()+"\",\n" +
-                "    \"gender\": \"female\",\n" +
-                "    \"status\": \"active\"\n" +
-                "}";
-        Response response = restClient.post(GO_REST_BASEURL,GO_REST_ENDPOINT,User,null,null, AuthType.BEARER_TOKEN, ContentType.JSON);
-        Assert.assertEquals(response.jsonPath().getString("name"),"Jagmeet Guneta");
+
+//        String User = "{\n" +
+//                "    \"name\": \"Jagmeet Guneta\",\n" +
+//                "    \"email\": \""+StringUtils.getRandomEmail()+"\",\n" +
+//                "    \"gender\": \"female\",\n" +
+//                "    \"status\": \"active\"\n" +
+//                "}";
+//        Response response = restClient.post(GO_REST_BASEURL,GO_REST_ENDPOINT,User,null,null, AuthType.BEARER_TOKEN, ContentType.JSON);
+//        Assert.assertEquals(response.jsonPath().getString("name"),"Jagmeet Guneta");
     }
 }

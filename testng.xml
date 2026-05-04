@@ -1,18 +1,12 @@
 <suite name="All Test Suite">
-
     <test verbose="2" preserve-order="true" name="C:/Users/Vicky/Documents/NaveenAPI/NaveenProject2">
         <classes>
-            <class name="com.qa.contacts.BasicAuthTest">
-                <methods>
-                    <include name="m1"/>
-                </methods>
-            </class>
             <class name="com.qa.contacts.CreateUser">
                 <methods>
                     <include name="m1"/>
                 </methods>
             </class>
-            <class name="com.qa.fakestore.GetProductsTest">
+            <class name="com.qa.gorest.BasicAuthTest">
                 <methods>
                     <include name="m1"/>
                 </methods>
@@ -21,6 +15,11 @@
                 <methods>
                     <include name="m1"/>
                     <include name="m2"/>
+                </methods>
+            </class>
+            <class name="com.qa.gorest.GetProductsTest">
+                <methods>
+                    <include name="m1"/>
                 </methods>
             </class>
             <class name="com.qa.gorest.GetUser">

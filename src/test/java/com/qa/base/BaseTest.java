@@ -22,7 +22,6 @@ public class BaseTest {
     protected final static String BASE_URl_ENDPOINT = "/basic_auth";
     protected final static String FAKE_STORE_PRODUCTS="/products";
 
-
     @BeforeTest
     public void setup()
     {
