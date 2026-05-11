@@ -1,68 +1,63 @@
-pipeline{
-
+pipeline
+{
     agent any
 
-    stages{
+    tools{
+        maven 'maven'
+        }
 
-        stage("build"){
-            steps{
-                echo("build the project")
+    stages
+    {
+        stage('Build')
+        {
+            steps
+            {
+                 git 'https://github.com/jglick/simple-maven-project-with-tests.git'
+                 sh "mvn -Dmaven.test.failure.ignore=true clean package"
+            }
+            post
+            {
+                success
+                {
+                    junit '**/target/surefire-reports/TEST-*.xml'
+                    archiveArtifacts 'target/*.jar'
+                }
             }
         }
 
-        stage("Run Unit test"){
+
+        stage("Deploy to Dev"){
             steps{
-                echo("run UTs")
+                echo("deploy to Dev")
             }
         }
 
-        stage("Run Integration test"){
-            steps{
-                echo("run ITs")
+        stage('Sanity API Automation Test on DEV') {
+            steps {
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    git 'https://github.com/BikramChatterjee9/NaveenAPI.git'
+                    sh "mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng.xml"
+
+                }
             }
         }
 
-        stage("Deploy to dev"){
-            steps{
-                echo("deploy to dev")
-            }
-        }
+
 
         stage("Deploy to QA"){
             steps{
-                echo("deploy to QA")
+                echo("deploy to qa done")
             }
         }
 
-        stage("Run regression API test cases on QA"){
+
+
+        stage("Deploy to Stage"){
             steps{
-                echo("Run API test cases on QA")
+                echo("deploy to Stage")
             }
         }
 
-        stage("Deploy to stage"){
-            steps{
-                echo("deploy to stage")
-            }
-        }
-
-        stage("Run sanity API test cases on Stage"){
-            steps{
-                echo("Run API sanity test cases on Stage")
-            }
-        }
-
-        stage("Deploy to UAT"){
-            steps{
-                echo("deploy to UAT")
-            }
-        }
-
-        stage("Run UAT API test cases on UAT"){
-            steps{
-                echo("Run API UAT test cases on UAT")
-            }
-        }
 
         stage("Deploy to PROD"){
             steps{
@@ -71,8 +66,5 @@ pipeline{
         }
 
 
-
     }
-
-
 }
